@@ -1,32 +1,32 @@
-import React from 'react';
-import { tabs } from '../constants';
+import React from "react";
+import { tabs } from "../constants";
 
 
-interface Props {
+interface IProps {
   activeTab: string;
   setActiveTab: (activeTab: string) => () => void;
 }
 
-const Tabs: React.SFC<Props> = ({ activeTab, setActiveTab }) => {
+const Tabs: React.SFC<IProps> = ({ activeTab, setActiveTab }) => {
   const isTabActive = (tab: string) => {
     if (activeTab === tab) {
-      return 'active';
+      return "active";
     }
 
-    return '';
-  }
+    return "";
+  };
 
   return <div className="tabs">
-    { tabs.map(tab =>
+    { tabs.map((tab) =>
       <div
         key={ tab }
         className={ `tab ${isTabActive(tab)}` }
         onClick={ setActiveTab(tab) }
       >
         { tab.toUpperCase() }
-      </div>
-    ) }
-  </div>
-}
+      </div>)
+    }
+  </div>;
+};
 
 export default Tabs;

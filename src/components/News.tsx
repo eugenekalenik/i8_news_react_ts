@@ -1,45 +1,45 @@
-import React from 'react';
-import { tabs } from '../constants';
-import { getNews } from '../requests';
-import Tabs from './Tabs';
-import NewsList from './NewsList';
+import React from "react";
+import { tabs } from "../constants";
+import { getNews } from "../requests";
+import NewsList from "./NewsList";
+import Tabs from "./Tabs";
 
 
 interface Item {
   "source": {
     "id": null | string,
-    "name": null | string
-  },
-  "author": null | string,
-  "title": null | string,
-  "description": null | string,
-  "url": null | string,
-  "urlToImage": null | string,
-  "publishedAt": null | string,
+    "name": null | string,
+  };
+  "author": null | string;
+  "title": null | string;
+  "description": null | string;
+  "url": null | string;
+  "urlToImage": null | string;
+  "publishedAt": null | string;
   "content": null | string;
 }
 
-interface State {
-  data: Item[];
+interface IState {
   activeTab: string;
+  data: Item[];
 }
 
-class News extends React.Component<{}, State, {}> {
-  state = {
+class News extends React.Component<{}, IState, {}> {
+  public state = {
+    activeTab: tabs[0],
     data: [],
-    activeTab: tabs[0]
-  }
+  };
 
-  componentDidMount(): void {
+  public componentDidMount(): void {
     this.setActiveTab(tabs[0])();
   }
 
-  setActiveTab = (activeTab: string) => () => {
+  public setActiveTab = (activeTab: string) => () => {
     getNews(activeTab)
-      .then(data => this.setState({ data: data.articles, activeTab }));
+      .then((data) => this.setState({ data: data.articles, activeTab }));
   }
 
-  render(): JSX.Element {
+  public render(): JSX.Element {
     const { data, activeTab } = this.state;
 
     return <>
@@ -48,7 +48,7 @@ class News extends React.Component<{}, State, {}> {
         setActiveTab={ this.setActiveTab }
       />
       <NewsList data={ data } />
-    </>
+    </>;
   }
 }
 
