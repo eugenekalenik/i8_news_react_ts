@@ -1,25 +1,27 @@
-import React from 'react';
+import React from "react";
 
 
 interface Item {
-  "source": {
-    "id": null | string,
-    "name": string
-  },
-  "author": string,
-  "title": string,
-  "description": string,
-  "url": string,
-  "urlToImage": string,
-  "publishedAt": string,
-  "content": string;
+  source: {
+    id: string,
+    name: string,
+  };
+  author: string;
+  title: string;
+  description: string;
+  url: string;
+  urlToImage: string;
+  publishedAt: string;
+  content: string;
 }
 
-interface Props {
+interface IProps {
   data: Item[];
 }
 
-const NewsList: React.SFC<Props> = ({ data }) => {
+const NewsList: React.SFC<IProps> = (props: IProps) => {
+  const { data } = props;
+
   if (!data) {
     return <div>Loading...</div>;
   }
@@ -29,20 +31,20 @@ const NewsList: React.SFC<Props> = ({ data }) => {
   }
 
   return <div className="news-list">
-    { data.map((item: Item) => {
-      return <div key={ item.title } className="news-item" style={ {
+    {data.map((item: Item) => {
+      return <div key={item.title} className="news-item" style={{
         backgroundImage: `url(${item.urlToImage})`,
-        backgroundSize: 'cover'
-      } }>
+        backgroundSize: "cover",
+      }}>
         <div className="filter">
-          <div className="date">{ new Date(item.publishedAt).toDateString() }</div>
-          <div className="title">{ item.title }</div>
-          <div className="author"><span>Author:</span> { item.author }</div>
-          <a className="source" href={ item.url }>{ item.source.name }</a>
+          <div className="date">{new Date(item.publishedAt).toDateString()}</div>
+          <div className="title">{item.title}</div>
+          <div className="author"><span>Author:</span> {item.author}</div>
+          <a className="source" href={item.url}>{item.source.name}</a>
         </div>
-      </div>
-    }) }
-  </div>
+      </div>;
+    })}
+  </div>;
 };
 
 export default NewsList;

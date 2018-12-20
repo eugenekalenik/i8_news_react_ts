@@ -6,22 +6,22 @@ import Tabs from "./Tabs";
 
 
 interface Item {
-  "source": {
-    "id": null | string,
-    "name": null | string,
+  source: {
+    id: string,
+    name: string,
   };
-  "author": null | string;
-  "title": null | string;
-  "description": null | string;
-  "url": null | string;
-  "urlToImage": null | string;
-  "publishedAt": null | string;
-  "content": null | string;
+  author: string;
+  title: string;
+  description: string;
+  url: string;
+  urlToImage: string;
+  publishedAt: string;
+  content: string;
 }
 
 interface IState {
   activeTab: string;
-  data: Item[];
+  data: Item[] | [];
 }
 
 class News extends React.Component<{}, IState, {}> {
@@ -44,10 +44,10 @@ class News extends React.Component<{}, IState, {}> {
 
     return <>
       <Tabs
-        activeTab={ activeTab }
-        setActiveTab={ this.setActiveTab }
+        activeTab={activeTab}
+        setActiveTab={this.setActiveTab}
       />
-      <NewsList data={ data } />
+      <NewsList data={data} />
     </>;
   }
 }

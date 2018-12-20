@@ -17,13 +17,13 @@ const Tabs: React.SFC<IProps> = ({ activeTab, setActiveTab }) => {
   };
 
   return <div className="tabs">
-    { tabs.map((tab) =>
+    {tabs.map((tab) =>
       <div
-        key={ tab }
-        className={ `tab ${isTabActive(tab)}` }
-        onClick={ setActiveTab(tab) }
+        key={tab}
+        className={`tab ${isTabActive(tab)}`}
+        onClick={setActiveTab(tab)}
       >
-        { tab.toUpperCase() }
+        {tab.toUpperCase()}
       </div>)
     }
   </div>;
